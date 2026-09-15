@@ -77,9 +77,14 @@ class _GalleryScreenState extends State<GalleryScreen>
   {
     return Scaffold
     (
-      appBar: AppBar(title: const Text('B+C Gallery'), backgroundColor: Colors.deepPurple),
+      appBar: AppBar
+      (
+          title: const Text('B+C Gallery'),
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
+      ),
 
-      body: Center
+      body: Expanded
       (
         child: Column
         (
@@ -103,25 +108,35 @@ class _GalleryScreenState extends State<GalleryScreen>
               ]
             ),
 
+
+
             // buttons,
             Row
             (
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children:
               [
-                FloatingActionButton
+                ElevatedButton
                 (
                   onPressed: _decrementGallery,
-                  tooltip: 'Previous',
-                  child: const Text('Previous'),
-
-                ),
-                FloatingActionButton
+                  child: const Text('<- Previous'),
+                  style: ElevatedButton.styleFrom
                   (
+                      minimumSize: Size(125, 40),
+                      backgroundColor: Colors.blueGrey,
+                      foregroundColor: Colors.white,
+                  ),
+                ),
+                ElevatedButton
+                (
                   onPressed: _incrementGallery,
-                  tooltip: 'Next',
-                  child: const Text('Next'),
-
+                  child: const Text('Next ->'),
+                  style: ElevatedButton.styleFrom
+                  (
+                      minimumSize: Size(125, 40),
+                      backgroundColor: Colors.blueGrey,
+                      foregroundColor: Colors.white,
+                  ),
                 ),
               ]
             )
