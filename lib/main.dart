@@ -95,20 +95,32 @@ class _GalleryScreenState extends State<GalleryScreen>
               padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
             ),
 
-            // image,
-            Image.asset(_art_pieces[_currentAsset].imageAsset, width: 300),
-
-            // text box,
-            Column
+            Expanded
             (
-              children:
-              [
-                Text(_art_pieces[_currentAsset].title),
-                Text("${_art_pieces[_currentAsset].artist} (${_art_pieces[_currentAsset].year})"),
-              ]
+              child: Column
+              (
+                children:
+                [
+                  // image,
+                  Image.asset(_art_pieces[_currentAsset].imageAsset, width: 300),
+
+                  Padding
+                  (
+                    padding: EdgeInsets.symmetric(vertical: 8)
+                  ),
+
+                  // text box,
+                  Column
+                    (
+                      children:
+                      [
+                        Text(_art_pieces[_currentAsset].title),
+                        Text("${_art_pieces[_currentAsset].artist} (${_art_pieces[_currentAsset].year})"),
+                      ]
+                  ),
+                ]
+              )
             ),
-
-
 
             // buttons,
             Row
@@ -139,10 +151,15 @@ class _GalleryScreenState extends State<GalleryScreen>
                   ),
                 ),
               ]
-            )
-          ]
-        )
-      )
+            ),
+
+            Padding
+            (
+              padding: EdgeInsets.only(bottom: 80)
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
