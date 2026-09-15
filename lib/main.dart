@@ -10,14 +10,15 @@ class Artwork
   final String artist;
   final int year;
   final String imageAsset;
+  final String title;
 
-  const Artwork(this.artist, this.year, this.imageAsset);
+  const Artwork(this.artist, this.year, this.imageAsset, this.title);
 }
 
 final List<Artwork> _art_pieces =
 [
-  Artwork('Smunga', 2001, 'assets/...'),
-  Artwork('Gubby', 2020, 'assets/...'),
+  Artwork('Smunga', 2001, 'assets/fence_rat.jpg', 'SmoogTitle'),
+  Artwork('Gubby', 2020, 'assets/RatGamer.jpg', 'GoobTitle'),
 ];
 
 class GalleryApp extends StatelessWidget
@@ -76,18 +77,31 @@ class _GalleryScreenState extends State<GalleryScreen>
   {
     return Scaffold
     (
-      appBar: AppBar(title: const Text('B+C Gallery')),
+      appBar: AppBar(title: const Text('B+C Gallery'), backgroundColor: Colors.deepPurple),
+
       body: Center
       (
         child: Column
         (
           children:
           [
+            Padding
+            (
+              padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+            ),
+
             // image,
-            Image.asset(_art_pieces[_currentAsset].imageAsset),
+            Image.asset(_art_pieces[_currentAsset].imageAsset, width: 300),
 
             // text box,
-
+            Column
+            (
+              children:
+              [
+                Text(_art_pieces[_currentAsset].title),
+                Text("${_art_pieces[_currentAsset].artist} (${_art_pieces[_currentAsset].year})"),
+              ]
+            ),
 
             // buttons,
             Row
@@ -100,12 +114,14 @@ class _GalleryScreenState extends State<GalleryScreen>
                   onPressed: _decrementGallery,
                   tooltip: 'Previous',
                   child: const Text('Previous'),
+
                 ),
                 FloatingActionButton
                   (
                   onPressed: _incrementGallery,
                   tooltip: 'Next',
                   child: const Text('Next'),
+
                 ),
               ]
             )
