@@ -5,11 +5,19 @@ void main()
   runApp(GalleryApp());
 }
 
-final List<String> _image_assets = const
+class Artwork
+{
+  final String artist;
+  final int year;
+  final String imageAsset;
+
+  const Artwork(this.artist, this.year, this.imageAsset);
+}
+
+final List<Artwork> _art_pieces =
 [
-  'assets/...',
-  'assets/...',
-  'assets/...',
+  Artwork('Smunga', 2001, 'assets/...'),
+  Artwork('Gubby', 2020, 'assets/...'),
 ];
 
 class GalleryApp extends StatelessWidget
@@ -36,8 +44,32 @@ class GalleryScreen extends StatefulWidget
 class _GalleryScreenState extends State<GalleryScreen>
 {
   // put variables here
+  int _currentAsset = 0;    // for keeping track of which image should show
 
   // put functions here
+  void _incrementGallery()
+  {
+    if (_currentAsset == _art_pieces.length - 1)
+    {
+      setState(() {_currentAsset = 0;});
+    }
+    else
+    {
+      setState(() {_currentAsset++;});
+    }
+  }
+
+  void _decrementGallery()
+  {
+    if (_currentAsset == 0)
+    {
+      setState(() {_currentAsset = _art_pieces.length - 1;});
+    }
+    else
+    {
+      setState(() {_currentAsset--;});
+    }
+  }
 
   @override
   Widget build(BuildContext context)
@@ -45,74 +77,41 @@ class _GalleryScreenState extends State<GalleryScreen>
     return Scaffold
     (
       appBar: AppBar(title: const Text('B+C Gallery')),
-      body:
-    )
-  }
-}
-
-
-/*
-
-class GalleryWidget extends StatefulWidget
-{
-  const GalleryWidget({Key? key}) : super(key: key);
-
-  @override
-  State<GalleryWidget> createState() => _GalleryState();
-}
-
-
-
-class _GalleryState extends State<GalleryWidget>
-{
-  @override
-  Widget build(BuildContext context)
-  {
-    return MaterialApp
+      body: Center
       (
-      home: Scaffold
+        child: Column
         (
+          children:
+          [
+            // image,
+            Image.asset(_art_pieces[_currentAsset].imageAsset),
 
-      ),
+            // text box,
+
+
+            // buttons,
+            Row
+            (
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children:
+              [
+                FloatingActionButton
+                (
+                  onPressed: _decrementGallery,
+                  tooltip: 'Previous',
+                  child: const Text('Previous'),
+                ),
+                FloatingActionButton
+                  (
+                  onPressed: _incrementGallery,
+                  tooltip: 'Next',
+                  child: const Text('Next'),
+                ),
+              ]
+            )
+          ]
+        )
+      )
     );
   }
 }
-
-
-class FirstScreen extends StatelessWidget
-{
-  const FirstScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context)
-  {
-    return MaterialApp
-    (
-      home: Scaffold
-      (
-        appBar: AppBar
-        (
-          backgroundColor: Colors.deepPurple,
-          title: const Text('C + B Gallery'),
-        ),
-        body: Container
-        (
-          child: Row
-          (
-            children:
-            [
-              ElevatedButton
-              (
-                onPressed: () => Navigator.of(context).push()
-              ),
-
-            ]
-          )
-        ),
-      ),
-    );
-  }
-}
-
-*/
-
