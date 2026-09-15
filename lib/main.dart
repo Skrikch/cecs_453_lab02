@@ -19,6 +19,7 @@ final List<Artwork> _art_pieces =
 [
   Artwork('Smunga', 2001, 'assets/fence_rat.jpg', 'SmoogTitle'),
   Artwork('Gubby', 2020, 'assets/RatGamer.jpg', 'GoobTitle'),
+  Artwork('SmunGubba', 10101, 'assets/him.jpg', 'Both')
 ];
 
 class GalleryApp extends StatelessWidget
@@ -111,7 +112,7 @@ class _GalleryScreenState extends State<GalleryScreen>
 
                   // text box,
                   Column
-                    (
+                  (
                       children:
                       [
                         Text(_art_pieces[_currentAsset].title),
