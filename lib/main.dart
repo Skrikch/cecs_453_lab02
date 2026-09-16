@@ -1,3 +1,5 @@
+/// Authors: Christos Georgakopoulos, Britney Ferguson
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -100,6 +102,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
             // Next, display and expand the image
             Expanded(
               child: Card(
+                elevation: 14,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50),
                   child: Image.asset(
@@ -107,7 +110,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
                     width: 300,
                   ),
                 ),
-                elevation: 15,
               ),
             ),
 
